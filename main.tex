@@ -1,0 +1,90 @@
+\documentclass[letterpaper,12pt]{article}
+
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.gif,.jpg}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\definecolor{light-gray}{gray}{0.5}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{bm}
+\usepackage{tabu}
+\usepackage{subfigure}
+\usepackage{listings}
+\usepackage[noabbrev,capitalize]{cleveref}
+\newcommand{\mc}[1]{\multicolumn{1}{c}{#1}}
+\usepackage{siunitx}
+\sisetup{
+  %use option "per-mode = reciprocal-positive-first" on a command to make it use e.g. m s^{-1}
+  %use option "per-mode = symbol" on a command to make it use e.g. m/s
+  per-mode = reciprocal-positive-first,
+  binary-units = true,
+  range-phrase = {\text{--}},  % or { to }
+  range-units = single,  % or repeat or brackets
+  list-units = single,  % or repeat or brackets
+  multi-part-units = single,  % or repeat or brackets
+  separate-uncertainty = true, % use \pm instead of brackets
+  mode = text,
+  %detect-mode = true,
+  %detect-shape = true,
+  detect-family = true,
+  detect-weight = true
+}%
+%%% Stuff to print git commit in footer
+\usepackage[mark]{gitinfo2}
+
+\title{Pion Absorption $+$ Charge Exchange Cross-section with LArIAT}
+\author{Justin Hugon, William Metcalf, Andrew Olivier,\\Martin Tzanov, Derek Walker}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+When neutrinos interact with argon nuclei, in LArTPCs like MicroBooNE, SBND,
+and DUNE, the hadronic recoil consists of charged and neutral pions along with
+protons and neutrons. Understanding how these hadrons interact in argon is
+important for accurately reconstructing the initial neutrino kinematics.  One
+of the main missions of LArIAT is to measure the cross-sections of charged
+pions on argon. This note focuses specifically on the pion absorption and
+charge exchange pion interactions.
+
+In pion absorption, a charged pion interacts with a nucleus to produce non-pion
+hadrons. Protons and neutrons are the most common products of pion absorption,
+but deuterons and kaons can also be produced~\cite{lads98,lads00}. Neutrons are
+difficult to detect in a LArTPC because, as neutral particles, they only
+produce ionization electrons when they interact with nuclei. Thus, observations
+of pion absorption in argon rely on identification of protons, deuterons, and
+very rarely kaons.
+
+In pion charge exchange, a charged pion interacts with a nucleus so that the
+pion's charge is added to the nucleus and a neutral pion is produced. Neutral
+pions decay to a pair of photons, and the short neutral pion lifetime means
+that they decay near the nucleus where they were produced. Thus, charge
+exchange interactions are similar to pion absorption interactions, but with the
+addition of two electromagnetic showers.
+
+\section{Simulation and Reconstruction}
+
+Analysis software for this study uses version v06\_15\_00 of
+\texttt{larsoft} and \texttt{lariatsoft}. This software is modified with the git branches listed in \cref{tab:software}.
+
+\begin{table}
+  \begin{center}
+    \begin{tabu}{|c|c|} \hline
+      \texttt{larsoft} Package & Branch or Tag \\ \hline \hline
+      \texttt{larana} &  \\ \hline
+      \texttt{larreco} &  \\ \hline
+    \end{tabu}
+    \caption{Git branch or tag names used for software packages used in this study.}
+    \label{tab:software}
+  \end{center}
+\end{table}
+  
+
+\bibliographystyle{myEPJC}
+\bibliography{mybib.bib}
+
+\end{document}
