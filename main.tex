@@ -6,7 +6,9 @@
 \definecolor{light-gray}{gray}{0.5}
 \usepackage{amsmath}
 \usepackage{amsthm}
-\usepackage{hyperref}
+\usepackage[hyperfootnotes=false]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB} %
+\usepackage{doi}
 \usepackage{tikz}
 \usepackage{bm}
 \usepackage{tabu}
@@ -53,11 +55,12 @@ charge exchange pion interactions.
 
 In pion absorption, a charged pion interacts with a nucleus to produce non-pion
 hadrons. Protons and neutrons are the most common products of pion absorption,
-but deuterons and kaons can also be produced~\cite{lads98,lads00}. Neutrons are
-difficult to detect in a LArTPC because, as neutral particles, they only
-produce ionization electrons when they interact with nuclei. Thus, observations
-of pion absorption in argon rely on identification of protons, deuterons, and
-very rarely kaons.
+but deuterons and kaons can also be
+produced~\cite{Kotlinski:1998vh,Rowntree:1999dp,Kotlinski:2000hp,Androic:2001tq}.
+Neutrons are difficult to detect in a LArTPC because, as neutral particles,
+they only produce ionization electrons when they interact with nuclei. Thus,
+observations of pion absorption in argon rely on identification of protons,
+deuterons, and very rarely kaons.
 
 In pion charge exchange, a charged pion interacts with a nucleus so that the
 pion's charge is added to the nucleus and a neutral pion is produced. Neutral
@@ -66,23 +69,54 @@ that they decay near the nucleus where they were produced. Thus, charge
 exchange interactions are similar to pion absorption interactions, but with the
 addition of two electromagnetic showers.
 
-\section{Simulation and Reconstruction}
+\section{Data \& Monte Carlo Samples}
 
-Analysis software for this study uses version v06\_15\_00 of
-\texttt{larsoft} and \texttt{lariatsoft}. This software is modified with the git branches listed in \cref{tab:software}.
+Data for this study comes from LArIAT Run II which took place in 2016. For the
+main analysis, only the positive magnet polarity runs are used. The data
+considered are from the SAM dataset definitions
+\texttt{Lovely1\_Pos\_RunII\_elenag\_v04}
+\texttt{Lovely1\_Neg\_RunII\_elenag\_v04}. \cref{tab:samDatasetProps} shows the
+requirements in the dataset definitions.
 
 \begin{table}
   \begin{center}
-    \begin{tabu}{|c|c|} \hline
+    \caption{SAM file selection for datasets.}
+    \label{tab:samDatasetProps}
+    \small
+    \begin{tabu}{|p{2.5in}|p{2.4in}|} \hline
+      SAM Cut & Explaination \\ \hline \hline
+      create\_date $<$ `2017-06-02' & Don't include later processing \\ \hline
+      data\_tier digits & Unpacked files \\ \hline
+      data\_tier digits & Unpacked files \\ \hline
+      lariat\_mid\_f\_mc7anb $<$ 0 or $>$ 0 & Positive or negative magnet polarity \\ \hline
+      run\_number $>$= 8000 and run\_number $<$= 10226 & The Run II set of runs \\ \hline
+      TPC\_voltages\_nominal & Self-explanatory \\ \hline
+      defname: TPC\_MaxGainAndFilter & TPC preamp/shapers set to maximum gain and shaping time (3 \& 3)\\ \hline
+      defname: TPC\_nominal\_read\_out\_and\_timing & Normal TPC readout mode \\ \hline
+      defname: BothTOF\_OnAndReadOut & Self-explanatory \\ \hline
+      defname: AllMWPC\_OnAndReadOut & Self-explanatory \\ \hline
+    \end{tabu}
+  \end{center}
+\end{table}
+
+The data and MC samples are processed using version v06\_15\_00 of \texttt{larsoft} and
+\texttt{lariatsoft}. This software is modified with the git branches listed in
+\cref{tab:software}.
+
+\begin{table}
+  \begin{center}
+    \begin{tabu}{|l|l|} \hline
       \texttt{larsoft} Package & Branch or Tag \\ \hline \hline
-      \texttt{larana} &  \\ \hline
-      \texttt{larreco} &  \\ \hline
+      \texttt{lariatsoft} & feature/jhugon\_PionAbsAndChEx \\ \hline
+      \texttt{larana} & feature/jhugon\_likelihoodPID\_forlarsoftv06\_15\_00 \\ \hline
+      \texttt{larreco} & feature/jhugon\_caloTruth \\ \hline
+      \texttt{lardataobj} & feature/jhugon\_caloTruth \\ \hline
+      \texttt{larbatch} & c30e15939360 (ups/product\_deps from v06\_15\_00)\\ \hline
     \end{tabu}
     \caption{Git branch or tag names used for software packages used in this study.}
     \label{tab:software}
   \end{center}
 \end{table}
-  
 
 \bibliographystyle{myEPJC}
 \bibliography{mybib.bib}
