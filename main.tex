@@ -78,7 +78,7 @@ considered are from the SAM dataset definitions
 \texttt{Lovely1\_Neg\_RunII\_elenag\_v04}. \cref{tab:samDatasetProps} shows the
 requirements in the dataset definitions.
 
-\begin{table}
+\begin{table}[!hbtp]
   \begin{center}
     \caption{SAM file selection for datasets.}
     \label{tab:samDatasetProps}
@@ -99,11 +99,51 @@ requirements in the dataset definitions.
   \end{center}
 \end{table}
 
+Additional dataset definitions specifiy specific secondary beam momenta and
+tertiary magnet current. These are subsets of
+\texttt{Lovely1\_Pos\_RunII\_elenag\_v04}, which contains 57219 files.  For the
+nominal momentum and current, these datasets require the
+\texttt{secondary.momentum} and \textt{tertiary.magnet\_current} to be within
+one unit of the nominal value in GeV and A, respectively.
+\cref{tab:samSpecificDatasets} shows the dataset definition names. There are
+544 files with secondary beam energy less than 63~GeV and only 189 files for
+secondary beam energy less than 59 GeV. There are no files with secondary beam
+energy greater than 65~GeV.
+
+% 64 GeV with current < 39: 2787 files
+% 64 GeV with current < 19: 2786 files
+% 64 GeV with current > 5 <= 11: 0 files
+% 64 GeV with current > 0 <= 5: 0 files
+% 64 GeV with current = 0: 2786 files
+% 64 GeV with current >= 39 & < 59: 0 files
+% 64 GeV with current > 61 & < 99: 2 files
+% 64 GeV with current > 101: 2 files
+% 64 GeV with current >= 39 <= 41: 0 files
+% 64 GeV with current >= 19 <= 21: 0 files
+
+\begin{table}[!hbtp]
+  \begin{center}
+    \caption{SAM dataset definitions for specific secondary beam momenta (in GeV) 
+                and tertiary magnet current (in A) and the number of associated files.}
+    \label{tab:samSpecificDatasets}
+    \small
+    \begin{tabu}{|l|l|} \hline
+      SAM Dataset Definition Name & Number of Files \\ \hline \hline
+      Lovely1\_Pos\_RunII\_jhugon\_current100\_secondary64\_v1   & 36797 \\ \hline
+      Lovely1\_Pos\_RunII\_jhugon\_current60\_secondary64\_v1    & 17078 \\ \hline
+      Lovely1\_Pos\_RunII\_jhugon\_current40\_secondary64\_v1    & 0     \\ \hline
+      Lovely1\_Pos\_RunII\_jhugon\_current20\_secondary64\_v1    & 0     \\ \hline
+      Lovely1\_Pos\_RunII\_jhugon\_currentLT19\_secondary64\_v1  & 2786  \\ \hline
+    \end{tabu}
+  \end{center}
+\end{table}
+
+
 The data and MC samples are processed using version v06\_15\_00 of \texttt{larsoft} and
 \texttt{lariatsoft}. This software is modified with the git branches listed in
 \cref{tab:software}.
 
-\begin{table}
+\begin{table}[!hbtp]
   \begin{center}
     \begin{tabu}{|l|l|} \hline
       \texttt{larsoft} Package & Branch or Tag \\ \hline \hline
@@ -117,6 +157,27 @@ The data and MC samples are processed using version v06\_15\_00 of \texttt{larso
     \label{tab:software}
   \end{center}
 \end{table}
+
+\section{Event Selection}
+
+\section{Cross-section Calculation}
+
+\section{Systematic Uncertainties}
+
+\section{Conclusions}
+
+\appendix
+\section{Event Displays}
+
+\begin{figure}[!hbtp]
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/evd/}
+    \caption{%
+                Event display of 
+            }
+    \label{fig:evd_alkdsg}
+  \end{center}
+\end{figure}
 
 \bibliographystyle{myEPJC}
 \bibliography{mybib.bib}
