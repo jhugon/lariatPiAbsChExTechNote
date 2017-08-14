@@ -12,7 +12,7 @@
 \usepackage{tikz}
 \usepackage{bm}
 \usepackage{tabu}
-\usepackage{subfigure}
+\usepackage{subfig}
 \usepackage{listings}
 \usepackage[noabbrev,capitalize]{cleveref}
 \newcommand{\mc}[1]{\multicolumn{1}{c}{#1}}
@@ -72,11 +72,13 @@ addition of two electromagnetic showers.
 \section{Data \& Monte Carlo Samples}
 
 Data for this study comes from LArIAT Run II which took place in 2016. For the
-main analysis, only the positive magnet polarity runs are used. The data
-considered are from the SAM dataset definitions
-\texttt{Lovely1\_Pos\_RunII\_elenag\_v04}
-\texttt{Lovely1\_Neg\_RunII\_elenag\_v04}. \cref{tab:samDatasetProps} shows the
-requirements in the dataset definitions.
+main analysis, only the positive magnet polarity runs are used. Some
+cross-checks use the negative polarity runs. The data considered are from the
+SAM dataset definitions \texttt{Lovely1\_Pos\_RunII\_elenag\_v04} and
+\texttt{Lovely1\_Neg\_RunII\_elenag\_v04} which contain 57219 and 72532 files,
+respectively. ``Lovely1'' is the nickname for good subruns where the TPC, WCs,
+and ToF is working properly. \cref{tab:samDatasetProps} shows the requirements
+in the dataset definitions.
 
 \begin{table}[!hbtp]
   \begin{center}
@@ -99,16 +101,18 @@ requirements in the dataset definitions.
   \end{center}
 \end{table}
 
-Additional dataset definitions specifiy specific secondary beam momenta and
-tertiary magnet current. These are subsets of
-\texttt{Lovely1\_Pos\_RunII\_elenag\_v04}, which contains 57219 files.  For the
-nominal momentum and current, these datasets require the
-\texttt{secondary.momentum} and \textt{tertiary.magnet\_current} to be within
-one unit of the nominal value in GeV and A, respectively.
-\cref{tab:samSpecificDatasets} shows the dataset definition names. There are
-544 files with secondary beam energy less than 63~GeV and only 189 files for
-secondary beam energy less than 59 GeV. There are no files with secondary beam
-energy greater than 65~GeV.
+Additional dataset definitions are for specific secondary beam momenta and
+tertiary magnet currents. These are subsets of
+\texttt{Lovely1\_Pos\_RunII\_elenag\_v04}. For the nominal momentum and
+current, these datasets require the \texttt{secondary.momentum} and
+\texttt{tertiary.magnet\_current} to be within one unit of the nominal value in
+GeV and A, respectively. \cref{tab:samSpecificDatasets} shows the dataset
+definition names. There are no files for 64 GeV secondary beam with magnet
+currents between 0 and 59 A. There are 544 files with secondary beam energy
+less than 63~GeV and only 189 files for secondary beam energy less than 59 GeV.
+There are no files with secondary beam energy greater than 65~GeV.
+\cref{fig:datasetConditions} shows the number of files per magnet current,
+compared between data in the Run Summary database and SAM database.
 
 % 64 GeV with current < 39: 2787 files
 % 64 GeV with current < 19: 2786 files
@@ -131,12 +135,38 @@ energy greater than 65~GeV.
       SAM Dataset Definition Name & Number of Files \\ \hline \hline
       Lovely1\_Pos\_RunII\_jhugon\_current100\_secondary64\_v1   & 36797 \\ \hline
       Lovely1\_Pos\_RunII\_jhugon\_current60\_secondary64\_v1    & 17078 \\ \hline
-      Lovely1\_Pos\_RunII\_jhugon\_current40\_secondary64\_v1    & 0     \\ \hline
-      Lovely1\_Pos\_RunII\_jhugon\_current20\_secondary64\_v1    & 0     \\ \hline
-      Lovely1\_Pos\_RunII\_jhugon\_currentLT19\_secondary64\_v1  & 2786  \\ \hline
+%      Lovely1\_Pos\_RunII\_jhugon\_current40\_secondary64\_v1    & 0     \\ \hline
+%      Lovely1\_Pos\_RunII\_jhugon\_current20\_secondary64\_v1    & 0     \\ \hline
+%      Lovely1\_Pos\_RunII\_jhugon\_currentLT19\_secondary64\_v1  & 2786  \\ \hline
+      Lovely1\_Pos\_RunII\_jhugon\_current0\_secondary64\_v1     & 2786  \\ \hline
     \end{tabu}
   \end{center}
 \end{table}
+
+\begin{figure}[!hbtp]
+  \begin{center}
+    \subfloat[]{\label{fig:datasetConditions_hist}
+          \includegraphics[width=0.48\textwidth]{figures/beamConditions/currentHist.pdf}
+    }
+    \subfloat[]{\label{fig:datasetConditions_hist2d}
+          \includegraphics[width=0.48\textwidth]{figures/beamConditions/currentHist2D.pdf}
+    }
+    \\
+    \subfloat[]{\label{fig:datasetConditions_currentVrun}
+          \includegraphics[width=0.48\textwidth]{figures/beamConditions/currentVrun.pdf}
+    }
+    \caption{%
+                Summary plots of the magnet current during Run II. A histogram of 
+                magnet current for ``lovely'', positive polarity subruns is 
+                shown in \subref{fig:datasetConditions_hist}, the magnet current 
+                from the run summary v. SAM is shown in \subref{fig:datasetConditions_hist2d}, 
+                and the magnet current v. run number is shown in 
+                \subref{fig:datasetConditions_currentVrun}, where the run summary data 
+                includes negative polarity and non-lovely runs.
+            }
+    \label{fig:datasetConditions}
+  \end{center}
+\end{figure}
 
 
 The data and MC samples are processed using version v06\_15\_00 of \texttt{larsoft} and
@@ -145,6 +175,8 @@ The data and MC samples are processed using version v06\_15\_00 of \texttt{larso
 
 \begin{table}[!hbtp]
   \begin{center}
+    \caption{Git branch or tag names used for software packages used in this study.}
+    \label{tab:software}
     \begin{tabu}{|l|l|} \hline
       \texttt{larsoft} Package & Branch or Tag \\ \hline \hline
       \texttt{lariatsoft} & feature/jhugon\_PionAbsAndChEx \\ \hline
@@ -153,8 +185,6 @@ The data and MC samples are processed using version v06\_15\_00 of \texttt{larso
       \texttt{lardataobj} & feature/jhugon\_caloTruth \\ \hline
       \texttt{larbatch} & c30e15939360 (ups/product\_deps from v06\_15\_00)\\ \hline
     \end{tabu}
-    \caption{Git branch or tag names used for software packages used in this study.}
-    \label{tab:software}
   \end{center}
 \end{table}
 
