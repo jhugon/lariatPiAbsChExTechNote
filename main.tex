@@ -33,8 +33,34 @@
   detect-family = true,
   detect-weight = true
 }%
+% Remember to always put {} after these commands to fix spacing issues!
+\newcommand{\GeV}{\giga\electronvolt}
+\newcommand{\GeVc}{\GeV{}\per c}
+\newcommand{\GeVcc}{\GeV{}\per\square c}
+\newcommand{\TeV}{\tera\electronvolt}
+\newcommand{\TeVc}{\TeV{}\per c}
+\newcommand{\TeVcc}{\TeV{}\per\square c}
+\newcommand{\MeV}{\mega\electronvolt}
+\newcommand{\MeVc}{\MeV{}\per c}
+\newcommand{\MeVcc}{\MeV{}\per\square c}
+\newcommand{\keV}{\kilo\electronvolt}
+\newcommand{\keVc}{\keV{}\per c}
+\newcommand{\keVcc}{\keV{}\per\square c}
+\newcommand{\eV}{\electronvolt}
+\newcommand{\eVc}{\eV{}\per c}
+\newcommand{\eVcc}{\eV{}\per\square c}
+
 %%% Stuff to print git commit in footer
 \usepackage[mark]{gitinfo2}
+
+\newcommand{\pip}{\ensuremath{\pi^{+}}}
+\newcommand{\pim}{\ensuremath{\pi^{-}}}
+\newcommand{\pipm}{\ensuremath{\pi^{\pm}}}
+\newcommand{\pi0}{\ensuremath{\pi^{0}}}
+\newcommand{\ep}{\ensuremath{\text{e}^{+}}}
+\newcommand{\em}{\ensuremath{\text{e}^{-}}}
+\newcommand{\epm}{\ensuremath{\text{e}^{\pm}}}
+\newcommand{\gam}{\ensuremath{\gamma}}
 
 \title{Pion Absorption $+$ Charge Exchange Cross-section with LArIAT}
 \author{Justin Hugon, William Metcalf, Andrew Olivier,\\Martin Tzanov, Derek Walker}
@@ -189,6 +215,62 @@ The data and MC samples are processed using version v06\_15\_00 of \texttt{larso
 \end{table}
 
 \section{Event Selection}
+
+In this analysis, particles that create hits in the WC, ToF, and TPC are known
+as ``primary particles.'' The particles created in interactions of primary
+particles are called ``secondary particles.'' These terms also lead to
+``primary tracks'' and ``secondary tracks'' that are TPC tracks reconstructed
+from primary particles and secondary particles, respectively.
+
+The first part of the selection is meant to identify a pure sample of primary
+tracks originating from primary \pip{} particles and called ``primary \pip{}
+selection''. The cuts are shown in \cref{tab:pipCuts}. In the data, only events
+with PMT flashes in the expected time window of the accelerator cycle for beam
+events, ?? to ??, are selected. Wire chamber tracks must pass the ``picky
+track'' cuts, which means that there is exactly one hit on each X and Y-plane
+in each of the four WC stations. This is required to ensure the purest sample
+of tracks with the best momentum resolution. Trac
+
+In the simulation, primary particles are generated from
+the last WC. The assumed WC momentum and direction is set equal to the initial
+momentum and direction of the generated primary particle. Momentum cuts and
+WC-TPC track matching is then performed in MC just as in data, using the true
+initial particle information on position, direction, and momentum as the WC
+values.
+
+
+%#Timestamp filter
+%#Events reconstructed successfully
+%#
+%#For pions:
+%#WC p (or MC start p) in 100 to 1100 MeV
+%#First TOF > 0 and < 25
+%#
+%#For protons
+%#WC p (or MC start p) in 450 to 1100 MeV
+%#First TOF > 28 and < 55
+%#
+%#N tracks in first 2cm in z: >=1
+%#N Tracks in first 14cm in z: < 4
+%#N tracks with length less than 5 cm: < 3
+%#
+%#Matching procedure...
+%#Only one matched track
+
+\begin{table}[!hbtp]
+  \begin{center}
+    \caption{Primary \pip{} selection cuts.}
+    \label{tab:pipCuts}
+    \begin{tabu}{|l|l|} \hline
+      Variable & Cut \\ \hline \hline
+      WC momentum & \SIrange[range-phrase={ to }]{100}{1100}{\MeVc{}} \\ \hline
+      First ToF & \SIrange[range-phrase={ to }]{0}{25}{\nano \second} \\ \hline
+      N$_{\text{tracks}}$ in $z<\SI{2}{\cm}$ & $\geq 1$ \\ \hline
+      N$_{\text{tracks}}$ in  $z<\SI{14}{\cm}$ & $< 4$ \\ \hline
+      N$_{\text{tracks}}$ with length $<\SI{5}{\cm}$ & $< 3$ \\ \hline
+    \end{tabu}
+  \end{center}
+\end{table}
 
 \section{Cross-section Calculation}
 
