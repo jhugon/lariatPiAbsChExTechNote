@@ -315,13 +315,254 @@ TPC track cuts are applied just as in data.
 \appendix
 \section{Event Displays}
 
+% Setup listings
+\lstset{%
+    basicstyle=\scriptsize\ttfamily,
+    %frame=single,
+    breaklines=true
+}
+
 \begin{figure}[!hbtp]
   \begin{center}
-    \includegraphics[width=0.7\textwidth]{figures/evd/}
+    \subfloat[]{\label{fig:evd_pipMC_208638_twq}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-twq-proj-1-208638.pdf}
+    }
+    \subfloat[]{\label{fig:evd_pipMC_208638_ortho}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-larortho3d-1-208638.pdf}
+    }
+\\
+\begin{lstlisting}
+process: primary, endProcess: pi+Inelastic, trueEndProcess: 13, nDaughters: 7, trueNSecondaryChPions: 1, trueNSecondaryPiZeros: 0, trueNSecondaryProtons: 0, End: 20.42, -1.262, 62.98
+TrackId: 1 MotherId: 0 PDG 211 KE 1263.1 len: 159.1 start: 26.3, -1.3, -96.0 end: 20.4, -1.3, 63.0 Process: primary EndProcess: pi+Inelastic
+TrackId: 34 MotherId: 1 PDG 211 KE 1021.4 len: 969.7 start: 20.4, -1.3, 63.0 end: 221.2, -224.4, 985.0 Process: pi+Inelastic EndProcess: CoupledTransportation
+TrackId: 36 MotherId: 1 PDG 22 KE 6.9 len: 62.5 start: 20.4, -1.3, 63.0 end: 13.3, -36.0, 67.0 Process: pi+Inelastic EndProcess: phot
+Primary Track start point: (22.3,-1.2,0.6)
+Primary Track end point: (20.5,-1.0,63.7)
+Secondary Track Start: (20.7,-1.2,64.4) End: (26.0,-7.5,90.1)
+\end{lstlisting}
     \caption{%
-                Event display of 
+                Event display of \pip{} MC event 208638. 
+                Time v. wire is shown in \subref{fig:evd_pipMC_208638_twq}, 
+                an orthographic projection in \subref{fig:evd_pipMC_208638_ortho},
+                and truth and reconstruction information is also listed.
             }
-    \label{fig:evd_alkdsg}
+    \label{fig:evd_pipMC_208638}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!hbtp]
+  \begin{center}
+    \subfloat[]{\label{fig:evd_pipMC_208639_twq}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-twq-proj-1-208639.pdf}
+    }
+    \subfloat[]{\label{fig:evd_pipMC_208639_ortho}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-larortho3d-1-208639.pdf}
+    }
+\\
+\begin{lstlisting}
+process: primary, endProcess: Decay, trueEndProcess: 6, nDaughters: 2, trueNSecondaryChPions: 0, trueNSecondaryPiZeros: 0, trueNSecondaryProtons: 0, End: 36.39, -4.516, 199.5
+TrackId: 1 MotherId: 0 PDG 211 KE 623.1 len: 296.0 start: 30.1, 1.8, -96.0 end: 36.4, -4.5, 199.5 Process: primary EndProcess: Decay
+Primary Track start point: (29.4,2.0,0.2)
+Primary Track end point: (35.5,0.0,90.0)
+\end{lstlisting}
+    \caption{%
+                Event display of \pip{} MC event 208639. 
+                Time v. wire is shown in \subref{fig:evd_pipMC_208639_twq}, 
+                and an orthographic projection in \subref{fig:evd_pipMC_208639_ortho}
+                and truth and reconstruction information is also listed.
+            }
+    \label{fig:evd_pipMC_208639}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!hbtp]
+  \begin{center}
+    \subfloat[]{\label{fig:evd_pipMC_208641_twq}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-twq-proj-1-208641.pdf}
+    }
+    \subfloat[]{\label{fig:evd_pipMC_208641_ortho}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-larortho3d-1-208641.pdf}
+    }
+\\
+\begin{lstlisting}
+process: primary, endProcess: pi+Inelastic, trueEndProcess: 13, nDaughters: 7, trueNSecondaryChPions: 0, trueNSecondaryPiZeros: 1, trueNSecondaryProtons: 1, End: 23.57, -9.378, 21.69
+TrackId: 1 MotherId: 0 PDG 211 KE 466.5 len: 117.7 start: 22.6, -7.1, -96.0 end: 23.6, -9.4, 21.7 Process: primary EndProcess: pi+Inelastic
+TrackId: 16 MotherId: 1 PDG 111 KE 219.3 len: 0.0 start: 23.6, -9.4, 21.7 end: 23.6, -9.4, 21.7 Process: pi+Inelastic EndProcess: Decay
+TrackId: 17 MotherId: 1 PDG 2212 KE 146.1 len: 15.2 start: 23.6, -9.4, 21.7 end: 18.8, -13.1, 35.7 Process: pi+Inelastic EndProcess: LArVoxelReadoutScoringProcess
+TrackId: 32 MotherId: 16 PDG 22 KE 295.0 len: 17.1 start: 23.6, -9.4, 21.7 end: 33.0, -23.5, 24.2 Process: Decay EndProcess: conv
+TrackId: 33 MotherId: 16 PDG 22 KE 59.2 len: 25.3 start: 23.6, -9.4, 21.7 end: 14.3, -31.7, 14.0 Process: Decay EndProcess: conv
+Primary Track start point: (23.7,-8.1,0.4)
+Primary Track end point: (23.5,-9.4,21.9)
+Secondary Track Start: (23.4,-9.4,22.2) End: (18.7,-13.1,35.8)
+\end{lstlisting}
+    \caption{%
+                Event display of \pip{} MC event 208641. 
+                Time v. wire is shown in \subref{fig:evd_pipMC_208641_twq}, 
+                and an orthographic projection in \subref{fig:evd_pipMC_208641_ortho},
+                and truth and reconstruction information is also listed.
+            }
+    \label{fig:evd_pipMC_208641}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!hbtp]
+  \begin{center}
+    \subfloat[]{\label{fig:evd_pipMC_208643_twq}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-twq-proj-1-208643.pdf}
+    }
+    \subfloat[]{\label{fig:evd_pipMC_208643_ortho}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-larortho3d-1-208643.pdf}
+    }
+\\
+\begin{lstlisting}
+process: primary, endProcess: pi+Inelastic, trueEndProcess: 13, nDaughters: 13, trueNSecondaryChPions: 2, trueNSecondaryPiZeros: 0, trueNSecondaryProtons: 0, End: 51.82, -3.928, 75.39
+TrackId: 1 MotherId: 0 PDG 211 KE 925.5 len: 172.5 start: 35.8, 0.5, -96.0 end: 51.8, -3.9, 75.4 Process: primary EndProcess: pi+Inelastic
+TrackId: 38 MotherId: 1 PDG 211 KE 209.3 len: 16.6 start: 51.8, -3.9, 75.4 end: 48.3, 7.7, 86.6 Process: pi+Inelastic EndProcess: pi+Inelastic
+TrackId: 39 MotherId: 1 PDG 211 KE 203.3 len: 46.4 start: 51.8, -3.9, 75.4 end: 59.5, -48.8, 83.9 Process: pi+Inelastic EndProcess: LArVoxelReadoutScoringProcess
+TrackId: 42 MotherId: 1 PDG 22 KE 5.6 len: 55.1 start: 51.8, -3.9, 75.4 end: 39.1, -56.4, 86.2 Process: pi+Inelastic EndProcess: conv
+TrackId: 45 MotherId: 1 PDG 22 KE 0.9 len: 56.0 start: 51.8, -3.9, 75.4 end: 26.8, 10.5, 85.3 Process: pi+Inelastic EndProcess: phot
+TrackId: 47 MotherId: 1 PDG 22 KE 0.4 len: 99.0 start: 51.8, -3.9, 75.4 end: 30.2, -19.2, 63.0 Process: pi+Inelastic EndProcess: phot
+\end{lstlisting}
+    \caption{%
+                Event display of \pip{} MC event 208643. 
+                Time v. wire is shown in \subref{fig:evd_pipMC_208643_twq}, 
+                and an orthographic projection in \subref{fig:evd_pipMC_208643_ortho},
+                and truth and reconstruction information is also listed.
+            }
+    \label{fig:evd_pipMC_208643}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!hbtp]
+  \begin{center}
+    \subfloat[]{\label{fig:evd_pipMC_208638_twq}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-twq-proj-1-208644.pdf}
+    }
+    \subfloat[]{\label{fig:evd_pipMC_208644_ortho}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-larortho3d-1-208644.pdf}
+    }
+\\
+\begin{lstlisting}
+process: primary, endProcess: CoupledTransportation, trueEndProcess: 15, nDaughters: 2, trueNSecondaryChPions: 0, trueNSecondaryPiZeros: 0, trueNSecondaryProtons: 0, End: -79.57, 9.515, 1010
+TrackId: 1 MotherId: 0 PDG 211 KE 1334.0 len: 1111.6 start: 26.0, -0.4, -96.0 end: -79.6, 9.5, 1010.4 Process: primary EndProcess: CoupledTransportation
+Primary Track start point: (15.6,1.4,1.4)
+Primary Track end point: (3.7,2.1,89.2)
+Secondary Track Start: (11.3,2.2,35.1) End: (11.8,2.8,38.0)
+Secondary Track Start: (11.3,-5.3,31.6) End: (11.0,4.7,26.8)
+Secondary Track Start: (10.6,0.8,31.8) End: (11.0,-28.3,46.3)
+Secondary Track Start: (4.8,2.0,83.1) End: (5.7,1.7,89.0)
+Secondary Track Start: (12.3,2.1,20.0) End: (9.6,3.1,22.6)
+\end{lstlisting}
+    \caption{%
+                Event display of \pip{} MC event 208644. 
+                Time v. wire is shown in \subref{fig:evd_pipMC_208644_twq}, 
+                and an orthographic projection in \subref{fig:evd_pipMC_208644_ortho},
+                and truth and reconstruction information is also listed.
+            }
+    \label{fig:evd_pipMC_208644}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!hbtp]
+  \begin{center}
+    \subfloat[]{\label{fig:evd_pipMC_208638_twq}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-twq-proj-1-208645.pdf}
+    }
+    \subfloat[]{\label{fig:evd_pipMC_208645_ortho}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-larortho3d-1-208645.pdf}
+    }
+\\
+\begin{lstlisting}
+process: primary, endProcess: pi+Inelastic, trueEndProcess: 13, nDaughters: 8, trueNSecondaryChPions: 2, trueNSecondaryPiZeros: 0, trueNSecondaryProtons: 0, End: 24.49, 0.2961, -7
+TrackId: 1 MotherId: 0 PDG 211 KE 1350.8 len: 89.2 start: 30.2, 1.2, -96.0 end: 24.5, 0.3, -7.0 Process: primary EndProcess: pi+Inelastic
+TrackId: 8 MotherId: 1 PDG 211 KE 670.6 len: 57.0 start: 24.5, 0.3, -7.0 end: 18.5, -15.9, 46.9 Process: pi+Inelastic EndProcess: pi+Inelastic
+TrackId: 9 MotherId: 1 PDG 211 KE 375.8 len: 360.2 start: 24.5, 0.3, -7.0 end: -175.5, 224.4, 191.0 Process: pi+Inelastic EndProcess: CoupledTransportation
+TrackId: 127 MotherId: 8 PDG 2212 KE 356.2 len: 507.5 start: 18.5, -15.9, 46.9 end: -111.2, -224.4, 490.9 Process: pi+Inelastic EndProcess: CoupledTransportation
+TrackId: 129 MotherId: 8 PDG 2212 KE 33.0 len: 1.1 start: 18.5, -15.9, 46.9 end: 18.9, -16.4, 47.8 Process: pi+Inelastic EndProcess: LArVoxelReadoutScoringProcess
+Primary Track start point: (22.1,-2.3,0.3)
+Primary Track end point: (17.5,-8.2,54.3)
+Secondary Track Start: (18.1,6.0,0.2) End: (2.5,20.3,16.3)
+Secondary Track Start: (17.5,-17.3,49.6) End: (15.5,-20.0,54.9)
+\end{lstlisting}
+    \caption{%
+                Event display of \pip{} MC event 208645. 
+                Time v. wire is shown in \subref{fig:evd_pipMC_208645_twq}, 
+                and an orthographic projection in \subref{fig:evd_pipMC_208645_ortho},
+                and truth and reconstruction information is also listed.
+            }
+    \label{fig:evd_pipMC_208645}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!hbtp]
+  \begin{center}
+    \subfloat[]{\label{fig:evd_pipMC_208638_twq}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-twq-proj-1-208646.pdf}
+    }
+    \subfloat[]{\label{fig:evd_pipMC_208646_ortho}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-larortho3d-1-208646.pdf}
+    }
+\\
+\begin{lstlisting}
+process: primary, endProcess: pi+Inelastic, trueEndProcess: 13, nDaughters: 12, trueNSecondaryChPions: 2, trueNSecondaryPiZeros: 0, trueNSecondaryProtons: 1, End: 25.46, 5.16, 14.29
+TrackId: 1 MotherId: 0 PDG 211 KE 619.5 len: 110.3 start: 26.9, 2.7, -96.0 end: 25.5, 5.2, 14.3 Process: primary EndProcess: pi+Inelastic
+TrackId: 17 MotherId: 1 PDG 211 KE 181.6 len: 16.8 start: 25.5, 5.2, 14.3 end: 14.0, 3.2, 26.5 Process: pi+Inelastic EndProcess: pi+Inelastic
+TrackId: 18 MotherId: 1 PDG -211 KE 100.4 len: 20.1 start: 25.5, 5.2, 14.3 end: 16.5, -5.1, -0.5 Process: pi+Inelastic EndProcess: pi-Inelastic
+TrackId: 19 MotherId: 1 PDG 2212 KE 50.2 len: 2.3 start: 25.5, 5.2, 14.3 end: 26.0, 5.3, 16.5 Process: pi+Inelastic EndProcess: LArVoxelReadoutScoringProcess
+TrackId: 34 MotherId: 18 PDG 2212 KE 99.7 len: 7.0 start: 16.5, -5.1, -0.5 end: 12.0, -2.0, -4.9 Process: pi-Inelastic EndProcess: LArVoxelReadoutScoringProcess
+TrackId: 71 MotherId: 17 PDG 211 KE 91.5 len: 23.1 start: 14.0, 3.2, 26.5 end: 12.5, 15.3, 7.5 Process: pi+Inelastic EndProcess: LArVoxelReadoutScoringProcess
+TrackId: 89 MotherId: 71 PDG 14 KE 29.8 len: 278.4 start: 12.5, 15.3, 7.5 end: 122.0, -224.4, 97.1 Process: Decay EndProcess: CoupledTransportation
+TrackId: 90 MotherId: 71 PDG -13 KE 4.1 len: 0.1 start: 12.5, 15.3, 7.5 end: 12.4, 15.4, 7.4 Process: Decay EndProcess: LArVoxelReadoutScoringProcess
+TrackId: 110 MotherId: 90 PDG -14 KE 33.7 len: 265.6 start: 12.4, 15.4, 7.4 end: 118.2, -224.4, -35.2 Process: Decay EndProcess: CoupledTransportation
+TrackId: 111 MotherId: 90 PDG 12 KE 24.3 len: 361.3 start: 12.4, 15.4, 7.4 end: 347.7, 25.9, 141.5 Process: Decay EndProcess: CoupledTransportation
+TrackId: 112 MotherId: 90 PDG -11 KE 46.7 len: 16.3 start: 12.4, 15.4, 7.4 end: -0.8, 23.6, 7.0 Process: Decay EndProcess: annihil
+Primary Track start point: (26.0,4.7,-0.1)
+Primary Track end point: (25.5,5.1,12.2)
+Secondary Track Start: (14.3,3.3,26.2) End: (12.5,15.5,7.5)
+Secondary Track Start: (25.5,4.9,13.8) End: (18.2,-3.6,2.0)
+Secondary Track Start: (25.4,5.1,14.4) End: (15.0,3.4,25.5)
+Secondary Track Start: (12.3,15.7,7.5) End: (8.8,19.6,7.5)
+Secondary Track Start: (25.7,5.2,14.9) End: (26.1,5.3,16.7)
+Secondary Track Start: (17.7,-4.0,1.3) End: (16.9,-4.8,0.0)
+\end{lstlisting}
+    \caption{%
+                Event display of \pip{} MC event 208646. 
+                Time v. wire is shown in \subref{fig:evd_pipMC_208646_twq}, 
+                and an orthographic projection in \subref{fig:evd_pipMC_208646_ortho},
+                and truth and reconstruction information is also listed.
+            }
+    \label{fig:evd_pipMC_208646}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!hbtp]
+  \begin{center}
+    \subfloat[]{\label{fig:evd_pipMC_208647_twq}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-twq-proj-1-208647.pdf}
+    }
+    \subfloat[]{\label{fig:evd_pipMC_208647_ortho}
+        \includegraphics[width=0.48\textwidth]{figures/evd/evd-larortho3d-1-208647.pdf}
+    }
+\\
+\begin{lstlisting}
+process: primary, endProcess: pi+Inelastic, trueEndProcess: 13, nDaughters: 6, trueNSecondaryChPions: 1, trueNSecondaryPiZeros: 0, trueNSecondaryProtons: 0, End: 15.36, -3.344, 63.95
+TrackId: 1 MotherId: 0 PDG 211 KE 862.4 len: 160.6 start: 28.5, 1.4, -96.0 end: 15.4, -3.3, 63.9 Process: primary EndProcess: pi+Inelastic
+TrackId: 28 MotherId: 1 PDG 211 KE 209.9 len: 69.8 start: 15.4, -3.3, 63.9 end: 19.0, -43.1, 7.0 Process: pi+Inelastic EndProcess: LArVoxelReadoutScoringProcess
+TrackId: 62 MotherId: 28 PDG 14 KE 29.8 len: 188.7 start: 19.0, -43.1, 7.0 end: 60.1, -224.4, -25.1 Process: Decay EndProcess: CoupledTransportation
+TrackId: 63 MotherId: 28 PDG -13 KE 4.1 len: 0.0 start: 19.0, -43.1, 7.0 end: 19.0, -43.1, 7.0 Process: Decay EndProcess: LArVoxelReadoutScoringProcess
+TrackId: 64 MotherId: 63 PDG -14 KE 48.1 len: 239.8 start: 19.0, -43.1, 7.0 end: -82.7, -224.4, 126.6 Process: Decay EndProcess: CoupledTransportation
+TrackId: 65 MotherId: 63 PDG 12 KE 22.0 len: 286.9 start: 19.0, -43.1, 7.0 end: -43.2, 224.4, -76.0 Process: Decay EndProcess: CoupledTransportation
+TrackId: 66 MotherId: 63 PDG -11 KE 34.6 len: 0.7 start: 19.0, -43.1, 7.0 end: 19.5, -42.7, 6.9 Process: Decay EndProcess: LArVoxelReadoutScoringProcess
+Primary Track start point: (20.8,-0.3,0.3)
+Primary Track end point: (15.4,-4.1,64.2)
+\end{lstlisting}
+    \caption{%
+                Event display of \pip{} MC event 208647. 
+                Time v. wire is shown in \subref{fig:evd_pipMC_208647_twq}, 
+                and an orthographic projection in \subref{fig:evd_pipMC_208647_ortho},
+                and truth and reconstruction information is also listed.
+            }
+    \label{fig:evd_pipMC_208647}
   \end{center}
 \end{figure}
 
