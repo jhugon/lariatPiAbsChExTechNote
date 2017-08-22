@@ -12,7 +12,7 @@ bibtex main
 cd ..
 echo "Second run of pdflatex..."
 pdflatex -interaction=batchmode --output-directory=build main
-echo "Third run of lulatex..."
+echo "Third run of pdflatex..."
 pdflatex -interaction=batchmode --output-directory=build main
 
 #echo "Running gs to embed fonts..."

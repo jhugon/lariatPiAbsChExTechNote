@@ -52,17 +52,17 @@
 \newcommand{\eVc}{\eV{}\per c}
 \newcommand{\eVcc}{\eV{}\per\square c}
 
-%%% Stuff to print git commit in footer
-\usepackage[mark]{gitinfo2}
-
 \newcommand{\pip}{\ensuremath{\pi^{+}}}
 \newcommand{\pim}{\ensuremath{\pi^{-}}}
 \newcommand{\pipm}{\ensuremath{\pi^{\pm}}}
-\newcommand{\pi0}{\ensuremath{\pi^{0}}}
+\newcommand{\piz}{\ensuremath{\pi^{0}}}
 \newcommand{\ep}{\ensuremath{\text{e}^{+}}}
 \newcommand{\em}{\ensuremath{\text{e}^{-}}}
 \newcommand{\epm}{\ensuremath{\text{e}^{\pm}}}
 \newcommand{\gam}{\ensuremath{\gamma}}
+
+%%% Stuff to print git commit in footer
+\usepackage[mark]{gitinfo2}
 
 \title{Pion Absorption $+$ Charge Exchange Cross-section with LArIAT}
 \author{Justin Hugon, William Metcalf, Andrew Olivier,\\Martin Tzanov, Derek Walker}
@@ -174,14 +174,14 @@ compared between data in the Run Summary database and SAM database.
 \begin{figure}[!hbtp]
   \begin{center}
     \subfloat[]{\label{fig:datasetConditions_hist}
-          \includegraphics[width=0.48\textwidth]{figures/beamConditions/currentHist.pdf}
+          \includegraphics[width=0.48\textwidth]{figures/beamConditions/currentHist.png}
     }
     \subfloat[]{\label{fig:datasetConditions_hist2d}
-          \includegraphics[width=0.48\textwidth]{figures/beamConditions/currentHist2D.pdf}
+          \includegraphics[width=0.48\textwidth]{figures/beamConditions/currentHist2D.png}
     }
     \\
     \subfloat[]{\label{fig:datasetConditions_currentVrun}
-          \includegraphics[width=0.48\textwidth]{figures/beamConditions/currentVrun.pdf}
+          \includegraphics[width=0.48\textwidth]{figures/beamConditions/currentVrun.png}
     }
     \caption{%
                 Summary plots of the magnet current during Run II. A histogram of 
