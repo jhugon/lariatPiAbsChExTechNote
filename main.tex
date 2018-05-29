@@ -10,6 +10,7 @@
 \hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB} %
 \usepackage{doi}
 \usepackage{tikz}
+\usepackage{ulem}
 \usepackage{bm}
 \usepackage{tabu}
 \usepackage{subfig}
@@ -60,6 +61,8 @@
 \newcommand{\em}{\ensuremath{\text{e}^{-}}}
 \newcommand{\epm}{\ensuremath{\text{e}^{\pm}}}
 \newcommand{\gam}{\ensuremath{\gamma}}
+
+\newcommand{\mSqrBeam}{\ensuremath{m^2_{\mathrm{beamline}}}}
 
 %%% Stuff to print git commit in footer
 \usepackage[mark]{gitinfo2}
@@ -181,6 +184,8 @@ compared between data in the Run Summary database and SAM database.
 %      Lovely1\_Pos\_RunII\_jhugon\_current20\_secondary64\_v1    & 0     \\ \hline
 %      Lovely1\_Pos\_RunII\_jhugon\_currentLT19\_secondary64\_v1  & 2786  \\ \hline
       Lovely1\_Pos\_RunII\_jhugon\_current0\_secondary64\_v1     & 2786  \\ \hline
+      Lovely1\_Neg\_RunII\_jhugon\_current100\_secondary64\_v1   & 14342 \\ \hline
+      Lovely1\_Neg\_RunII\_jhugon\_current60\_secondary64\_v1    & 35717 \\ \hline
     \end{tabu}
   \end{center}
 \end{table}
@@ -211,9 +216,11 @@ compared between data in the Run Summary database and SAM database.
 \end{figure}
 
 
-The data and MC samples are processed using version v06\_15\_00 of \texttt{larsoft} and
+The data and MC samples are processed using version v06\_34\_00 of \texttt{larsoft} and
 \texttt{lariatsoft}. This software is modified with the git branches listed in
-\cref{tab:software}.
+\cref{tab:software}. The web page: 
+\mbox{\url{https://github.com/jhugon/lariatPionAbs/blob/master/README.md}}
+has instructions for installing the various software versions.
 
 \begin{table}[!hbtp]
   \begin{center}
@@ -222,13 +229,36 @@ The data and MC samples are processed using version v06\_15\_00 of \texttt{larso
     \begin{tabu}{|l|l|} \hline
       \texttt{larsoft} Package & Branch or Tag \\ \hline \hline
       \texttt{lariatsoft} & feature/jhugon\_PionAbsAndChEx \\ \hline
-      \texttt{larana} & feature/jhugon\_likelihoodPID\_forlarsoftv06\_15\_00 \\ \hline
+      \texttt{larana} & feature/jhugon\_likelihoodPID\ \\ \hline
       \texttt{larreco} & feature/jhugon\_caloTruth \\ \hline
       \texttt{lardataobj} & feature/jhugon\_caloTruth \\ \hline
-      \texttt{larbatch} & c30e15939360 (ups/product\_deps from v06\_15\_00)\\ \hline
     \end{tabu}
   \end{center}
 \end{table}
+
+The TPC reconstruction uses the algorithms listed in \cref{tab:recoAlgs}.
+
+\begin{table}[!hbtp]
+  \begin{center}
+    \caption{TPC reconstruction algorithms used in this analysis.}
+    \label{tab:recoAlgs}
+    \begin{tabu}{|l|l|l|} \hline
+      Reconstruction Stage & Algorithm & Parameters\\ \hline \hline
+      Hit finding & \texttt{gaushit} & default \\ \hline
+      2D clustering & \texttt{trajcluster} & default \\ \hline
+      3D track finding & \texttt{pmtrack} & default \\ \hline
+      Calorimetry & \texttt{calo} & default \\ \hline
+    \end{tabu}
+  \end{center}
+\end{table}
+
+Monte Carlo data is generated using a single particle gun starting from the
+closest wire chamber to the TPC. The particle gun starting position and angle
+are generated from uniform distributions with boundaries similar to that found
+in data. The momentum distribution is flat from 0 to \SI{1.5}{\GeVc{}}. The MC
+for each particle species is then reweighted based on the momentum distribution
+observed in the beamline MC. The ratios of particle species in the beamline MC
+are also used to weight the single particle gun MC.
 
 \section{Event Selection}
 
@@ -242,24 +272,57 @@ from primary particles and secondary particles, respectively.
 
 The first part of the selection is meant to identify a pure sample of primary
 tracks originating from primary \pip{} particles and called ``primary \pip{}
-selection''. The cuts are shown in \cref{tab:pipCuts}. In the data, only events
-with PMT flashes in the expected time window of the accelerator cycle for beam
-events, \SIrange{1.2}{5.5}{\second}, are selected. Wire chamber tracks must
+selection''. The cuts are shown in \cref{tab:pipCuts}. Wire chamber tracks must
 pass the ``picky track'' cuts, which means that there is exactly one hit on
 each X and Y-plane in each of the four WC stations. This is required to ensure
 the purest sample of tracks with the best momentum resolution. Since a WC track
 is required, this means a single hit is required in each WC plane. The WC
 momentum is required to be between \SI{100}{\MeVc{}} and \SI{1100}{\MeVc{}},
-and the projected WC track direction must pass through the TPC flange.  The
-first reconstructed ToF in the collection is required to between 0 and
-\SI{25}{\nano \second}.
+and the projected WC track direction must pass through the TPC flange. 
+
+\begin{table}[!hbtp]
+  \begin{center}
+    \small
+    \caption{Primary \pip{} selection cuts. See \cref{tab:WCTPCMatching} for WC-TPC track matching.}
+    \label{tab:pipCuts}
+    \begin{tabu}{|l|l|} \hline
+      Variable & Cut \\ \hline \hline
+      N$_{\text{hits}}$ in each WC plane & 1 \\ \hline
+      WC momentum & \SIrange{100}{1100}{\MeVc{}} \\ \hline
+      x, y of WC track projected to $z=0$ & $\sqrt{(x-\SI{23.75}{\cm})^2+(y-\SI{0.2}{\cm})^2} < \SI{11.93}{\cm}$ \\ \hline
+      First ToF & \SIrange{0}{25}{\nano \second} \\ \hline
+      Primary track start $z$ & $< \SI{2}{\cm}$ \\ \hline
+      \sout{N$_{\text{tracks}}$ in  $z<\SI{14}{\cm}$} & \sout{$< 4$} \\ \hline
+      \sout{N$_{\text{tracks}}$ with length $<\SI{5}{\cm}$} & \sout{$< 3$} \\ \hline
+      N TPC tracks matched to the WC track & 1 \\ \hline
+    \end{tabu}
+  \end{center}
+\end{table}
+
+The particle mass squared reconstructed using WC and ToF information, \mSqrBeam{}, is used to
+reduce kaon and proton contamination. The mass squared is calculated as:
+
+\begin{equation}
+\mSqrBeam{} = p^2 \left( \frac{t^2 c^2}{d^2} - 1 \right),
+\end{equation}
+
+where $p$ is the WC momentum in \si{\MeVc{}}, $t$ is the ToF in \si{\nano
+\second}, $d$ is the distance a particle travels between the ToF counters,
+\SI{6.686}{\meter}, and $c$ is the speed of light in \si[per-mode =
+symbol]{\meter \per \nano \second}.\footnote{The time for a zero mass particle
+to go through the ToF counters, $d/c$, is \SI{22.3}{\nano \second}}. The mass
+squared is used instead of the mass, because the finite resolution of the ToF
+makes some particles appear to go faster than the speed of light, making the
+mass undefined ($t < d/c$ and thus $\mSqrBeam{} < 0$). To reject kaons and
+pions, \mSqrBeam{} must be less than $(223.6)^2 = $ \SI{5e4}{(\MeVcc{}
+)\squared}.
 
 To reduce the number of events from \ep{} and beam halo muons as well as
-high-occupancy events, some additional cuts are made on TPC tracks. There must
-be at least one track in the first \SI{2}{\cm} of the TPC in $z$, while there
-must be less than 4 tracks in the first \SI{14}{\cm}. Also, to reduce the \ep{}
+high-occupancy events, some additional cuts are made on TPC tracks. The primary
+track must start in the first \SI{2}{\cm{}} of the TPC. \sout{There must be
+less than 4 tracks in the first \SI{14}{\cm}. Also, to reduce the \ep{}
 contamination, less than 3 tracks with lengths less than \SI{5}{\cm} are
-required.
+required.} %end sout
 
 Finally, the WC track must be matched to exactly one TPC track. The cuts are
 summarized in \cref{tab:WCTPCMatching}. The matching begins by only looking at
@@ -272,37 +335,6 @@ difference in the $x$-coordinates, $\Delta x$, must be between \SI{-4}{\cm} and
 between \SI{-5}{\cm} and \SI{5}{\cm}. The difference in the 3D angle between
 the WC track and TPC track, $\Delta \alpha$, must be less than
 \SI{10}{\degree}.
-
-The MC samples are generated using a single particle gun that starts the
-primary particle at last WC. There is no WC or ToF information in the MC, and
-the PMT information is not used. The assumed WC momentum and direction is set
-equal to the initial momentum and direction of the generated primary particle.
-Momentum cuts and WC-TPC track matching is then performed in MC just as in
-data, using the true initial particle information on position, direction, and
-momentum as the WC values. The $\Delta x$ is required to be between
-\SI{-5}{\cm} and \SI{5}{\cm}, which differs from the data. This is thought to
-be some kind of timing offset in the data that is not present in the MC. The
-TPC track cuts are applied just as in data.
-
-\begin{table}[!hbtp]
-  \begin{center}
-    \small
-    \caption{Primary \pip{} selection cuts. See \cref{tab:WCTPCMatching} for WC-TPC track matching.}
-    \label{tab:pipCuts}
-    \begin{tabu}{|l|l|} \hline
-      Variable & Cut \\ \hline \hline
-      PMT time stamp & \SIrange{1.2}{5.5}{\second} \\ \hline
-      N$_{\text{hits}}$ in each WC plane & 1 \\ \hline
-      WC momentum & \SIrange{100}{1100}{\MeVc{}} \\ \hline
-      x, y of WC track projected to $z=0$ & $\sqrt{(x-\SI{23.75}{\cm})^2+(y-\SI{0.2}{\cm})^2} < \SI{11.93}{\cm}$ \\ \hline
-      First ToF & \SIrange{0}{25}{\nano \second} \\ \hline
-      N$_{\text{tracks}}$ in $z<\SI{2}{\cm}$ & $\geq 1$ \\ \hline
-      N$_{\text{tracks}}$ in  $z<\SI{14}{\cm}$ & $< 4$ \\ \hline
-      N$_{\text{tracks}}$ with length $<\SI{5}{\cm}$ & $< 3$ \\ \hline
-      N TPC tracks matched to the WC track & 1 \\ \hline
-    \end{tabu}
-  \end{center}
-\end{table}
 
 \begin{table}[!hbtp]
   \begin{center}
@@ -319,6 +351,29 @@ TPC track cuts are applied just as in data.
     \end{tabu}
   \end{center}
 \end{table}
+
+Since the MC samples are generated using a single particle gun, there is no
+accompanying WC or ToF information. The assumed WC momentum and direction are
+set equal to the true initial momentum and direction of the generated primary
+particle. Momentum cuts and WC-TPC track matching are then performed in MC just
+as in data, using the true initial particle information on position, direction,
+and momentum as the WC values. The $\Delta x$ is required to be between
+\SI{-5}{\cm} and \SI{5}{\cm}, which differs from the data. This is thought to
+be some kind of timing offset in the data that is not present in the MC. The
+TPC track cuts are applied just as in data.
+
+\subsection{Signal Definition}
+
+Pions that have true inelastic interactions in the fiducial region with no
+charged pions in the final state. Also, the reconstructed interaction vertex
+must be withing \SI{1}{\cm} of the true interaction vertex. The reconstructed
+interation vertex is defined as the end of the primary track.
+
+FIDUCIAL INTERACTION REGION DEFINITION
+
+\subsection{Signal Selction}
+
+RECO INTERACTION IN FIDUCIAL, SECONDARY TRACK DEFINITION, SECONDARY SELECTION
 
 \section{Cross-section Calculation}
 
