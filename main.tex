@@ -74,6 +74,8 @@
 
 \maketitle
 
+\tableofcontents
+
 \section{Introduction}
 
 An important part of neutrino interactions is the hadronic recoil.  In
@@ -133,7 +135,6 @@ in the dataset definitions.
     \begin{tabu}{|p{2.5in}|p{2.4in}|} \hline
       SAM Cut & Explaination \\ \hline \hline
       create\_date $<$ `2017-06-02' & Don't include later processing \\ \hline
-      data\_tier digits & Unpacked files \\ \hline
       data\_tier digits & Unpacked files \\ \hline
       lariat\_mid\_f\_mc7anb $<$ 0 or $>$ 0 & Positive or negative magnet polarity \\ \hline
       run\_number $>$= 8000 and run\_number $<$= 10226 & The Run II set of runs \\ \hline
@@ -269,6 +270,7 @@ particles are called ``secondary particles.'' These terms also lead to
 from primary particles and secondary particles, respectively.
 
 \subsection{Primary \pip{} Selection}
+\label{sec:primaryPipSel}
 
 The first part of the selection is meant to identify a pure sample of primary
 tracks originating from primary \pip{} particles and called ``primary \pip{}
@@ -362,18 +364,50 @@ and momentum as the WC values. The $\Delta x$ is required to be between
 be some kind of timing offset in the data that is not present in the MC. The
 TPC track cuts are applied just as in data.
 
-\subsection{Signal Definition}
+\subsection{Pion Absorption $+$ Charge Exchange Signal Definition}
 
-Pions that have true inelastic interactions in the fiducial region with no
-charged pions in the final state. Also, the reconstructed interaction vertex
-must be withing \SI{1}{\cm} of the true interaction vertex. The reconstructed
-interation vertex is defined as the end of the primary track.
+The signal is defined as \pip{}'s coming from the beamline that have true
+inelastic interactions in the fiducial region with no charged pions in the
+final state. The fiducial region is the region defined in \cref{tab:fiducial}.
+Also, the reconstructed interaction vertex must be within \SI{1}{\cm} of the
+true interaction vertex.  The reconstructed interaction vertex is defined as
+the end of the primary track.
 
-FIDUCIAL INTERACTION REGION DEFINITION
+\begin{table}[!hbtp]
+  \begin{center}
+    \small
+    \caption{Interaction vertex fiducial region.}
+    \label{tab:fiducial}
+    \begin{tabu}{|r|S|S|} \hline
+      Coordinate & {Lower Boundary [cm]} & {Upper Boundary [cm]} \\ \hline \hline
+      $x$ & 5.4 & 42.7 \\ \hline
+      $y$ & -15 & 15 \\ \hline
+      $z$ & 5 & 85 \\ \hline
+    \end{tabu}
+  \end{center}
+\end{table}
 
-\subsection{Signal Selction}
 
-RECO INTERACTION IN FIDUCIAL, SECONDARY TRACK DEFINITION, SECONDARY SELECTION
+\subsection{Pion Absorption $+$ Charge Exchange Signal Selection}
+
+The signal selection first requires the ``primary \pip{} selection'' described
+in \cref{sec:primaryPipSel}. In addition, the reconstructed interaction vertex
+must be in the fiducial region (see \cref{tab:fiducial}). In addition, all
+secondary tracks must be considered proton-like, the requirements of which will
+be described below.
+
+Secondary tracks are defined as tracks with start points within \SI{2}{\cm} of
+the reconstructed interaction vertex. In addition, to be considered as
+secondary tracks, they must contain at least \textbf{3 ?} hits. Finally, to be
+considered proton-like, the secondary tracks must have pion/proton
+log-likelihood ratios less than \textbf{????}.
+
+An interesting variable for investigating the pion/proton likelihood ratios of
+the secondary tracks is the maximum likelihood ratio in an event. Since all
+secondary tracks must have likelihood ratios less than the cut value, the
+secondary track in an event with the largest likelihood value is the deciding
+factor. Thus the maximum likelihood ratio for secondaries in an event can help
+define where the cut should be.
 
 \section{Cross-section Calculation}
 
