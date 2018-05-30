@@ -292,7 +292,9 @@ and the projected WC track direction must pass through the TPC flange.
       N$_{\text{hits}}$ in each WC plane & 1 \\ \hline
       WC momentum & \SIrange{100}{1100}{\MeVc{}} \\ \hline
       x, y of WC track projected to $z=0$ & $\sqrt{(x-\SI{23.75}{\cm})^2+(y-\SI{0.2}{\cm})^2} < \SI{11.93}{\cm}$ \\ \hline
-      First ToF & \SIrange{0}{25}{\nano \second} \\ \hline
+      %First ToF & \SIrange{0}{25}{\nano \second} \\ \hline
+      \mSqrBeam{} & $<$ \SI{5e4}{(\MeVcc{})\squared} \\ \hline
+      $\overline{dE/dx}_5$ & $<$ \SI[per-mode = symbol]{15}{\MeV \per \cm{}} \\ \hline
       Primary track start $z$ & $< \SI{2}{\cm}$ \\ \hline
       \sout{N$_{\text{tracks}}$ in  $z<\SI{14}{\cm}$} & \sout{$< 4$} \\ \hline
       \sout{N$_{\text{tracks}}$ with length $<\SI{5}{\cm}$} & \sout{$< 3$} \\ \hline
@@ -321,13 +323,15 @@ pions, \mSqrBeam{} must be less than $(223.6)^2 = $ \SI{5e4}{(\MeVcc{}
 )\squared}.
 
 Another variable, the average $dE/dx$ of the last 5 hits of the primary track
-($<dE/dx>_5$), is used to further reduce the beam proton background.
-Importantly, this cut also removes events where beam pion interact in the TPC
-producing protons, and a single track is mis-reconstructed as both the pion and
-proton. These events with mis-reconstructed interactions can contribute
-significantly to backgrounds of the pion absorption $+$ charge exchange
-selection of \cref{sec:piAbsChExSigSel}, because the track ending in a proton
-has no secondary tracks making it look like absorption or charge exchange.
+($\overline{dE/dx}_5$), is used to further reduce the beam proton background.
+The $\overline{dE/dx}_5$ must be less than \SI[per-mode = symbol]{15}{\MeV
+\per \cm{}}. Importantly, this cut also removes events where beam pion interact
+in the TPC producing protons, and a single track is mis-reconstructed as both
+the pion and proton. These events with mis-reconstructed interactions can
+contribute significantly to backgrounds of the pion absorption $+$ charge
+exchange selection of \cref{sec:piAbsChExSigSel}, because the track ending in a
+proton has no secondary tracks making it look like absorption or charge
+exchange.
 
 To reduce the number of events from \ep{} and beam halo muons as well as
 high-occupancy events, some additional cuts are made on TPC tracks. The primary
