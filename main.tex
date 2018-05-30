@@ -301,8 +301,9 @@ and the projected WC track direction must pass through the TPC flange.
   \end{center}
 \end{table}
 
-The particle mass squared reconstructed using WC and ToF information, \mSqrBeam{}, is used to
-reduce kaon and proton contamination. The mass squared is calculated as:
+The particle mass squared reconstructed using WC and ToF information,
+\mSqrBeam{}, is used to reduce kaon and proton contamination. The mass squared
+is calculated as:
 
 \begin{equation}
 \mSqrBeam{} = p^2 \left( \frac{t^2 c^2}{d^2} - 1 \right),
@@ -318,6 +319,15 @@ makes some particles appear to go faster than the speed of light, making the
 mass undefined ($t < d/c$ and thus $\mSqrBeam{} < 0$). To reject kaons and
 pions, \mSqrBeam{} must be less than $(223.6)^2 = $ \SI{5e4}{(\MeVcc{}
 )\squared}.
+
+Another variable, the average $dE/dx$ of the last 5 hits of the primary track
+($<dE/dx>_5$), is used to further reduce the beam proton background.
+Importantly, this cut also removes events where beam pion interact in the TPC
+producing protons, and a single track is mis-reconstructed as both the pion and
+proton. These events with mis-reconstructed interactions can contribute
+significantly to backgrounds of the pion absorption $+$ charge exchange
+selection of \cref{sec:piAbsChExSigSel}, because the track ending in a proton
+has no secondary tracks making it look like absorption or charge exchange.
 
 To reduce the number of events from \ep{} and beam halo muons as well as
 high-occupancy events, some additional cuts are made on TPC tracks. The primary
@@ -365,13 +375,11 @@ be some kind of timing offset in the data that is not present in the MC. The
 TPC track cuts are applied just as in data.
 
 \subsection{Pion Absorption $+$ Charge Exchange Signal Definition}
+\label{sec:piAbsChExSigDef}
 
 The signal is defined as \pip{}'s coming from the beamline that have true
 inelastic interactions in the fiducial region with no charged pions in the
 final state. The fiducial region is the region defined in \cref{tab:fiducial}.
-Also, the reconstructed interaction vertex must be within \SI{1}{\cm} of the
-true interaction vertex.  The reconstructed interaction vertex is defined as
-the end of the primary track.
 
 \begin{table}[!hbtp]
   \begin{center}
@@ -389,18 +397,20 @@ the end of the primary track.
 
 
 \subsection{Pion Absorption $+$ Charge Exchange Signal Selection}
+\label{sec:piAbsChExSigSel}
 
 The signal selection first requires the ``primary \pip{} selection'' described
 in \cref{sec:primaryPipSel}. In addition, the reconstructed interaction vertex
-must be in the fiducial region (see \cref{tab:fiducial}). In addition, all
+must be in the fiducial region (see \cref{tab:fiducial}). The reconstructed
+interaction vertex is defined as the end of the primary track. In addition, all
 secondary tracks must be considered proton-like, the requirements of which will
 be described below.
 
-Secondary tracks are defined as tracks with start points within \SI{2}{\cm} of
-the reconstructed interaction vertex. In addition, to be considered as
-secondary tracks, they must contain at least \textbf{3 ?} hits. Finally, to be
-considered proton-like, the secondary tracks must have pion/proton
-log-likelihood ratios less than \textbf{????}.
+Secondary tracks are defined as tracks with start or end points within
+\SI{2.5}{\cm} of the reconstructed interaction vertex. In addition, to be
+considered as secondary tracks, they must contain at least 5 hits.
+Finally, to be considered proton-like, the secondary tracks must have
+pion/proton log-likelihood ratios less than 0.
 
 An interesting variable for investigating the pion/proton likelihood ratios of
 the secondary tracks is the maximum likelihood ratio in an event. Since all
@@ -419,7 +429,11 @@ define where the cut should be.
 
 \section{Systematic Uncertainties}
 
+\section{Results}
+
 \section{Conclusions}
+
+\newpage
 
 \appendix
 \section{Event Displays}
@@ -674,6 +688,8 @@ Primary Track end point: (15.4,-4.1,64.2)
     \label{fig:evd_pipMC_208647}
   \end{center}
 \end{figure}
+
+\newpage
 
 \bibliographystyle{myEPJC}
 \bibliography{mybib.bib}
